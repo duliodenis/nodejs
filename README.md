@@ -7,6 +7,7 @@ This repo contains my nodeJS projects.
 No  | Course
 ------------- | -------------
 1. | A Simple HTTP Server
+2. | A basic Express Website
 
 ### Licensing
 My nodeJS projects are licensed under [the MIT License](https://github.com/duliodenis/nodejs/blob/master/LICENSE).
