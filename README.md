@@ -8,6 +8,7 @@ No  | Course
 ------------- | -------------
 1. | A Simple HTTP Server
 2. | A basic Express Website
+3. | Bank Account Simulation
 
 ### Licensing
 My nodeJS projects are licensed under [the MIT License](https://github.com/duliodenis/nodejs/blob/master/LICENSE).
