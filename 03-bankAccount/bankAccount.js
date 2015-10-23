@@ -23,9 +23,14 @@ var createAccount = function(account) {
 // Finds matching accounts using a forEach on the array of accounts
 var getAccount = function(username) {
 	var matchingAccounts = [];
-	accounts.forEach(function(account){
+
+	for (var i=0; i < accounts.length; i++) {
+		if (username === accounts[i].username) matchingAccounts.push(accounts[i]);
+	}
+/*	accounts.forEach(function(account){
 		if (username === account.username) matchingAccounts.push(account);
 	});
+*/
 	return matchingAccounts;
 }
 
