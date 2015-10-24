@@ -27,22 +27,27 @@ var getAccount = function(username) {
 	for (var i=0; i < accounts.length; i++) {
 		if (username === accounts[i].username) matchingAccounts.push(accounts[i]);
 	}
-/*	accounts.forEach(function(account){
-		if (username === account.username) matchingAccounts.push(account);
-	});
-*/
+
 	return matchingAccounts;
 }
 
 var deposit = function(account, amount) {
-	console.log("Deposit of " + amount);
-	account.balance += amount;
+	if (typeof amount === 'number') {
+		console.log("Deposit of " + amount);
+		account.balance += amount;		
+	} else {
+		console.log('Deposit failed. Amount is not a number.')
+	}
 }
 
 
 var withdrawal = function(account, amount) {
-	console.log("Withdrawal of " + amount);
-	account.balance -= amount;
+	if (typeof amount === 'number') {
+		console.log("Withdrawal of " + amount);
+		account.balance -= amount;		
+	} else {
+		console.log('Withdrawal failed. Amount is not a number.')
+	}
 }
 
 
@@ -54,9 +59,18 @@ var getBalance = function(account) {
 var printBalance = function(account) {
 	console.log("Current Balance: " + getBalance(account));		
 }
- 
+
+// createBalanceGetter(account) using a closure
+// return function() returns account.balance 
+var createBalanceGetter = function(account) {
+	return function() {
+		return account.balance;
+	}
+} 
+
 
 // Bank Test Run: create an 'A' and 'B' account, deposit $10 into 'A', Withdraw $5 from 'B'. Result = A($10), B(-$5).
+//                deposit 100 into Account A and use the createBalanceGetter closure function.
 
 var AAccount = createAccount({
 	balance: 0,
@@ -71,8 +85,14 @@ var BAccount = createAccount({
 var account = getAccount("A");
 console.log("Matches = " + account.length);
 
+deposit(account[0], 100);
+
+var getABalance = createBalanceGetter(account[0]);
+console.log("Account Balance: " + getABalance());
+
 printBalance(AAccount);
 deposit(AAccount, 10);
 printBalance(AAccount);
+withdrawal(BAccount, '5'); // error on type of amount
 withdrawal(BAccount, 5);
 printBalance(BAccount);
